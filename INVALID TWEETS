@@ -1,0 +1,60 @@
+INVALID TWEETS
+
+Write a solution to find the IDs of the invalid tweets. The tweet is invalid if the number of characters used in the content of the tweet is strictly greater than 15.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+ 
+
+Example 1:
+
+Input: 
+Tweets table:
++----------+-----------------------------------+
+| tweet_id | content                           |
++----------+-----------------------------------+
+| 1        | Let us Code                       |
+| 2        | More than fifteen chars are here! |
++----------+-----------------------------------+
+Output: 
++----------+
+| tweet_id |
++----------+
+| 2        |
++----------+
+Explanation: 
+Tweet 1 has length = 11. It is a valid tweet.
+Tweet 2 has length = 33. It is an invalid tweet.
+ 
+SQL QUERY:
+select tweet_id 
+from Tweets
+where length(content)>15
+
+
+#MORE RELATED USED FXNS:
+
+Substring & Position (often used with length)
+SUBSTRING(str, start, len) → extract part of string
+LEFT(str, n) → first n characters
+RIGHT(str, n) → last n characters
+POSITION(substr IN str) → position of substring
+INSTR(str, substr) → index of substring (MySQL/Oracle)
+
+🔤 Case Conversion
+
+UPPER(str) → convert to uppercase
+LOWER(str) → convert to lowercase
+
+🧹 Trimming / Padding
+
+TRIM(str) → remove spaces from both ends
+LTRIM(str) → remove leading spaces
+RTRIM(str) → remove trailing spaces
+
+🔁 Replace / Modify
+
+REPLACE(str, old, new) → replace substring
+CONCAT(str1, str2, …) → join strings
