@@ -1,0 +1,20 @@
+| Function        | Syntax                        | Description                          | Common Use Case          |
+| --------------- | ----------------------------- | ------------------------------------ | ------------------------ |
+| `DATEDIFF`      | `DATEDIFF(d1, d2)`            | Difference in days between two dates | Consecutive days, gaps   |
+| `DATE_ADD`      | `DATE_ADD(d, INTERVAL n DAY)` | Adds interval to a date              | Next day, rolling window |
+| `DATE_SUB`      | `DATE_SUB(d, INTERVAL n DAY)` | Subtracts interval from a date       | Last N days              |
+| `CURDATE`       | `CURDATE()`                   | Returns current date                 | Today’s data             |
+| `NOW`           | `NOW()`                       | Returns current date & time          | Live timestamps          |
+| `YEAR`          | `YEAR(d)`                     | Extracts year                        | Year-wise aggregation    |
+| `MONTH`         | `MONTH(d)`                    | Extracts month                       | Monthly reports          |
+| `DAY`           | `DAY(d)`                      | Extracts day                         | Day-based grouping       |
+| `EXTRACT`       | `EXTRACT(unit FROM d)`        | Extracts specific unit               | Standard SQL queries     |
+| `DATE`          | `DATE(datetime)`              | Removes time part                    | Logs → date              |
+| `TIMESTAMPDIFF` | `TIMESTAMPDIFF(unit, d1, d2)` | Difference in units                  | Age, experience          |
+| `DAYNAME`       | `DAYNAME(d)`                  | Returns weekday name                 | Weekend analysis         |
+| `MONTHNAME`     | `MONTHNAME(d)`                | Returns month name                   | Reports                  |
+| `LAST_DAY`      | `LAST_DAY(d)`                 | Last day of month                    | Billing, salary          |
+| `WEEK`          | `WEEK(d)`                     | Week number of year                  | Weekly analysis          |
+| `WEEKDAY`       | `WEEKDAY(d)`                  | Day index (0 = Monday)               | Weekday checks           |
+| `DATE_FORMAT`   | `DATE_FORMAT(d, fmt)`         | Formats date as string               | Dashboards               |
+| `STR_TO_DATE`   | `STR_TO_DATE(str, fmt)`       | Converts string to date              | CSV / dirty data         |
