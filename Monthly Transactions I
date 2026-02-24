@@ -1,0 +1,65 @@
+Write an SQL query to find for each month and country, the number of transactions and their total amount, the number of approved transactions and their total amount.
+
+Return the result table in any order.
+
+The query result format is in the following example.
+
+ 
+
+Example 1:
+
+Input: 
+Transactions table:
++------+---------+----------+--------+------------+
+| id   | country | state    | amount | trans_date |
++------+---------+----------+--------+------------+
+| 121  |so |
+| 123  | US      | approved | 2000   | 2019-01-01 |
+| 124  | DE      | approved | 2000   | 2019-01-07 |
++------+---------+----------+--------+------------+
+Output: 
++----------+---------+-------------+----------------+--------------------+-----------------------+
+| month    | country | trans_count | approved_count | trans_total_amount | approved_total_amount |
++----------+---------+-------------+----------------+--------------------+-----------------------+
+| 2018-12  | US      | 2           | 1              | 3000               | 1000                  |
+| 2019-01  | US      | 1           | 1              | 2000               | 2000                  |
+| 2019-01  | DE      | 1           | 1              | 2000               | 2000                  |
++----------+---------+-------------+----------------+--------------------+-----------------------+
+
+
+SQL:
+SELECT
+    DATE_FORMAT(trans_date, '%Y-%m') AS month,
+    country,
+    COUNT(*) AS trans_count,
+/*here we have grouped by month and country to usko group karke count karega hamesha count group bhy ke basis par hota hai agar group by nhi lagaya hai to wo tab pura table to consider
+karta hai */
+    SUM(IF(state = 'approved', 1, 0)) AS approved_count,
+    SUM(amount) AS trans_total_amount,
+    SUM(IF(state = 'approved', amount, 0)) AS approved_total_amount
+FROM Transactions
+GROUP BY month, country;
+
+
+@ 1️⃣ Month extraction
+DATE_FORMAT(trans_date, '%Y-%m')
+→ converts 2018-12-18 → 2018-12
+
+🧠 When do we NEED TO_DATE?
+✅ Case 1: Date column is VARCHAR / STRING
+trans_date = '07-01-2019'
+
+SQL cannot do date math or grouping properly on strings.
+
+✅ Fix:
+TO_DATE(trans_date, 'DD-MM-YYYY')
+✅ Case 2: Comparing dates stored as strings
+
+❌ Wrong:
+WHERE trans_date >= '2019-01-01'
+✅ Correct:
+WHERE TO_DATE(trans_date, 'YYYY-MM-DD') >= DATE '2019-01-01'
+
+
+@ COUNT() is always calculated per GROUP BY group.
+
