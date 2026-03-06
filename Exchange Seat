@@ -30,12 +30,14 @@ Output:
 Explanation: 
 Note that if the number of students is odd, there is no need to change the last one's seat.
 
+intutition
+if the id is odd then increase the +1 thrn it will become even so internally the id changes then at last order by use and it will give u the reusultant result.
 
 sql:
 
 select 
 case
-when id= (select max(id) from seat) and id% 2=1 then id 
+when id= (select max(id) from seat) and id% 2=1 then id ## if last odd then retain
 when id % 2 =1 then id+1 
 else id-1 
 end
